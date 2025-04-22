@@ -87,3 +87,58 @@ int main() {
 - **display()**: O(n)
 
 This implementation provides an efficient way to use a stack data structure with minimal memory overhead
+
+## Algorithms
+### Linear Search
+Linear search is a simple searching algorithm that sequentially checks each element in a collection until the target element is found or the entire collection has been searched.
+#### Implementation Details
+``` cpp
+int search(const int arr[], const int n, int sz) {
+    for (int i = 0; i < sz; i++) {
+        if (arr[i] == n) {
+            return i;
+        }
+    }
+    return -1;
+}
+```
+#### Parameters:
+- `arr[]`: The array to search through
+- `n`: The target value to find
+- `sz`: The size of the array
+
+#### Return Value:
+- Returns the index of the first occurrence of the target value
+- Returns -1 if the target value is not found in the array
+
+#### Usage Example:
+``` cpp
+int main() {
+    const int arr[10] = {0, 1, 3, 4, 7, 9, 4, 6, 7, 4};
+    cout << "index = " << search(arr, 4, 10);  // Output: index = 3
+    return 0;
+}
+```
+#### Time Complexity:
+- **Best case**: O(1) - Target element is found at the first position
+- **Worst case**: O(n) - Target element is at the last position or not in the array
+- **Average case**: O(n/2) which simplifies to O(n)
+
+#### Space Complexity:
+- O(1) - Constant space regardless of input size
+
+#### Advantages:
+- Simple to implement and understand
+- Works on unsorted arrays
+- No preprocessing required
+- Effective for small datasets
+
+#### Disadvantages:
+- Inefficient for large datasets compared to other search algorithms like binary search
+- Linear time complexity makes it slow for large arrays
+
+Linear search is best used when:
+- The array is small
+- The array is unsorted and sorting would be expensive
+- You need to find all occurrences of an element (with modified implementation)
+- You're performing a one-time search and preprocessing would be inefficient
