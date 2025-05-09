@@ -12,7 +12,7 @@ Data structures are a way of organizing and storing data in a computer so that i
 
 Linear data structures store data in a sequential manner. Examples include:
 
-- **Arrays**: A collection of elements identified by index or key.
+* **Arrays**: A collection of elements identified by index or key.
 
 ```cpp
 #include <iostream>
@@ -27,7 +27,7 @@ int main() {
 }
 ```
 
-- **Linked Lists**: A series of connected nodes where each node contains data and a reference to the next node.
+* **Linked Lists**: A series of connected nodes where each node contains data and a reference to the next node.
 
 ```cpp
 #include <iostream>
@@ -55,7 +55,7 @@ int main() {
 }
 ```
 
-- **Stacks**: Follows the Last-In-First-Out (LIFO) principle.
+* **Stacks**: Follows the Last-In-First-Out (LIFO) principle.
 
 ```cpp
 #include <iostream>
@@ -76,7 +76,7 @@ int main() {
 }
 ```
 
-- **Queues**: Follows the First-In-First-Out (FIFO) principle.
+* **Queues**: Follows the First-In-First-Out (FIFO) principle.
 
 ```cpp
 #include <iostream>
@@ -101,7 +101,7 @@ int main() {
 
 Non-linear data structures store data in a hierarchical or interconnected manner. Examples include:
 
-- **Trees**: A hierarchical structure with a root node and child nodes.
+* **Trees**: A hierarchical structure with a root node and child nodes.
 
 ```cpp
 #include <iostream>
@@ -130,7 +130,7 @@ int main() {
 }
 ```
 
-- **Graphs**: A set of nodes connected by edges.
+* **Graphs**: A set of nodes connected by edges.
 
 ```cpp
 #include <iostream>
@@ -172,9 +172,9 @@ int main() {
 
 Data structures are essential for:
 
-- Efficient data management
-- Optimizing algorithms
-- Reducing time and space complexity
+* Efficient data management
+* Optimizing algorithms
+* Reducing time and space complexity
 
 ## Stack Implementation Using Linked List
 
@@ -190,15 +190,15 @@ A linked list is a linear data structure where elements (nodes) are not stored i
 
 **Key Characteristics:**
 
-- Dynamic size - can grow or shrink at runtime
-- Efficient insertions and deletions (O(1) time when position is known)
-- Random access is inefficient (O(n) time)
-- Memory efficient - allocates memory as needed
+* Dynamic size - can grow or shrink at runtime
+* Efficient insertions and deletions (O(1) time when position is known)
+* Random access is inefficient (O(n) time)
+* Memory efficient - allocates memory as needed
 
 In this implementation, each node contains:
 
-- An integer value (`data`)
-- A pointer to the next node (`next`)
+* An integer value (`data`)
+* A pointer to the next node (`next`)
 
 #### Stack
 
@@ -206,10 +206,10 @@ A stack is an abstract data type that follows the Last-In-First-Out (LIFO) princ
 
 **Key Operations:**
 
-- **Push (Insert):** Add an element to the top of the stack
-- **Pop:** Remove and return the top element of the stack
-- **isEmpty:** Check if the stack is empty
-- **Peek (Top):** View the top element without removing it
+* **Push (Insert):** Add an element to the top of the stack
+* **Pop:** Remove and return the top element of the stack
+* **isEmpty:** Check if the stack is empty
+* **Peek (Top):** View the top element without removing it
 
 ### Implementation Details for Stack
 
@@ -228,8 +228,6 @@ public:
 };
 ```
 
-The node class stores an integer value and a pointer to the next node.
-
 #### Stack Class
 
 ```cpp
@@ -246,22 +244,13 @@ public:
 };
 ```
 
-##### Methods in Stack Class
-
-- **isEmpty():** Returns true if the stack is empty
-- **insert(int data):** Adds a new element to the top of the stack
-- **pop():** Removes and returns the top element of the stack
-- **display():** Prints all elements in the stack (from top to bottom)
-- **search(int data):** Searches for a given value in the stack
-- **~stack():** Destructor that properly cleans up all allocated memory
-
 ### Memory Management in Stack
 
 The implementation ensures proper memory management:
 
-- Each `new` operation in `insert()` is balanced with a `delete` in `pop()`
-- The destructor properly deallocates all remaining nodes when the stack is destroyed
-- No memory leaks occur during normal operations
+* Each `new` operation in `insert()` is balanced with a `delete` in `pop()`
+* The destructor properly deallocates all remaining nodes when the stack is destroyed
+* No memory leaks occur during normal operations
 
 ### Usage Example for Stack
 
@@ -281,21 +270,17 @@ int main() {
 
 ### Time Complexity for Stack Operations
 
-- **insert():** O(1)
-- **pop():** O(1)
-- **isEmpty():** O(1)
-- **search():** O(n)
-- **display():** O(n)
-
-This implementation provides an efficient way to use a stack data structure with minimal memory overhead.
+* **insert():** O(1)
+* **pop():** O(1)
+* **isEmpty():** O(1)
+* **search():** O(n)
+* **display():** O(n)
 
 ## Algorithms
 
 ### Linear Search Algorithm
 
 Linear search is a simple searching algorithm that sequentially checks each element in a collection until the target element is found or the entire collection has been searched.
-
-#### Implementation Details for Linear Search
 
 ```cpp
 int search(const int arr[], const int n, int sz) {
@@ -308,52 +293,70 @@ int search(const int arr[], const int n, int sz) {
 }
 ```
 
-#### Parameters for Linear Search
+### Quick Sort Algorithm
 
-- `arr[]`: The array to search through
-- `n`: The target value to find
-- `sz`: The size of the array
+Quick Sort is a divide-and-conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot.
 
-#### Return Value for Linear Search
-
-- Returns the index of the first occurrence of the target value
-- Returns -1 if the target value is not found in the array
-
-#### Usage Example for Linear Search
+#### Implementation Details for Quick Sort
 
 ```cpp
+#include <iostream>
+using namespace std;
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
 int main() {
-    const int arr[10] = {0, 1, 3, 4, 7, 9, 4, 6, 7, 4};
-    cout << "index = " << search(arr, 4, 10);  // Output: index = 3
+    int arr[] = {10, 7, 8, 9, 1, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    quickSort(arr, 0, n - 1);
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
     return 0;
 }
 ```
 
-#### Time Complexity for Linear Search
+### Time Complexity for Quick Sort
 
-- **Best case:** O(1) - Target element is found at the first position
-- **Worst case:** O(n) - Target element is at the last position or not in the array
-- **Average case:** O(n/2) which simplifies to O(n)
+* **Best case:** O(n log n)
+* **Average case:** O(n log n)
+* **Worst case:** O(n^2) (when pivot is smallest or largest element every time)
 
-#### Space Complexity for Linear Search
+### Space Complexity for Quick Sort
 
-- O(1) - Constant space regardless of input size
+* O(log n) for recursive stack (in-place sort)
 
-#### Advantages of Linear Search
+### Advantages of Quick Sort
 
-- Simple to implement and understand
-- Works on unsorted arrays
-- No preprocessing required
-- Effective for small datasets
+* Faster in practice for large datasets
+* In-place sorting algorithm
 
-#### Disadvantages of Linear Search
+### Disadvantages of Quick Sort
 
-- Inefficient for large datasets compared to other search algorithms like binary search
-- Linear time complexity makes it slow for large arrays
+* Not stable (relative order of equal elements may not be preserved)
+* Worst-case time complexity is poor without careful pivot selection
 
-Linear search is best used when:
+Quick sort is best used when:
 
-- The array is small
-- The array is unsorted and sorting would be expensive
-- You need to find all occurrences of an element (with modified implementation)
-- You're performing a one-time search and preprocessing would be inefficient
+* You need fast average-case performance
+* Memory usage needs to be minimal
+* Stability is not a concern
